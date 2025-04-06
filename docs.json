@@ -65,10 +65,10 @@
   },
   "footer": {
     "socials": {
+      "website": "https://www.nuviod.com",
       "discord": "https://discord.nuviod.com",
       "github": "https://github.com/nuviod",
-      "youtube": "https://youtube.com/@vuviod",
-      "website": "https://www.nuviod.com"
+      "youtube": "https://youtube.com/@vuviod"
     }
   }
 }
