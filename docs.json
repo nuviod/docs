@@ -9,12 +9,14 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "tabs": [
+    "dropdowns": [
       {
-        "tab": "General Documentation",
+        "dropdown": "Getting Started",
+        "icon": "book",
+        "description": "Set up your documentation",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Getting Started",
             "pages": [
               "started/welcome",
               "started/dependencies",
@@ -23,27 +25,27 @@
             ]
           },
           {
-            "group": "Scripts",
+            "group": "Resources",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              {
+                "group": "nv-core",
+                "pages": [
+                  "resources/nv-core/showcase",
+                  "resources/nv-core/config",
+                  "resources/nv-core/examples",
+                  "resources/nv-core/changelog",
+                  "resources/nv-core/errorcodes"
+                ]
+              }
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-      ]
-    }
+    ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/dark.png",
+    "dark": "/logo/light.png"
   },
   "navbar": {
     "links": [

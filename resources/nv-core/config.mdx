@@ -1,0 +1,29 @@
+---
+title: 'Config'
+description: 'Configuration example is as follows.'
+---
+
+```lua
+Config = {
+    Language = 'tr',
+    ControlVersions = true,
+
+    Bridge = {
+        Framework   = '', -- [[ qb-core, qbx_core, es_extended ]] --
+        SQL         = '', -- [[ oxmysql, ghmattimysql ]] --
+        Inventory   = '', -- [[ qb-inventory, ps-inventory, ox_inventory, qs-inventory, mInventory ]] --
+        Zone        = '', -- [[ PolyZone, ox_lib ]] --
+        Target      = '', -- [[ qb-target, ox_target ]] --
+        Menu        = '', -- [[ qb-input, ox_lib ]] --
+        Input       = '', -- [[ qb-input, ox_lib ]] --
+        Notify      = '', -- [[ qb-core, ox_lib, es_extended ]] --
+        Drawtext    = '', -- [[ qb-core, ox_lib ]] --
+        Progressbar = '', -- [[ qb-core, ox_lib, es_extended ]] --
+        Fuel        = '', -- [[ LegacyFuel, cdn-fuel, ox_fuel ]] --
+        VehicleKey  = '', -- [[ qb-vehiclekeys, qs-vehiclekeys, qbx_vehiclekeys, cad-keys ]] --
+    },
+
+    DrawtextPosition = 'left-center',
+    NotifyPosition = 'center-left', -- For ox_lib notification
+}
+```
