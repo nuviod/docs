@@ -65,9 +65,11 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "tebex": "https://nuviod.tebex.io",
+      "discord": "https://nuviod.tebex.io",
+      "github": "https://github.com/nuviod",
+      "youtube": "https://youtube.com/@vuviod",
+      "website": "https://www.nuviod.com"
     }
   }
 }
