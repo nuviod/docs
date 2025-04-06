@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Nuviod",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,18 +11,19 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "General Documentation",
         "groups": [
           {
             "group": "Get Started",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "started/welcome",
+              "started/dependencies",
+              "started/commonerrors",
+              "started/faq"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Scripts",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -33,45 +34,10 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
       }
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
       ]
     }
   },
@@ -82,15 +48,18 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Store",
+        "href": "https://nuviod.tebex.io/"
+      },
+      {
+        "label": "Discord",
+        "href": "https://discord.nuviod.io/"
+      },
+      {
+        "label": "Youtube",
+        "href": "https://www.youtube.com/@nuviod"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "footer": {
     "socials": {
