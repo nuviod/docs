@@ -20,7 +20,6 @@
             "pages": [
               "started/welcome",
               "started/dependencies",
-              "started/commonerrors",
               "started/faq"
             ]
           },
