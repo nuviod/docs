@@ -1,29 +1,58 @@
 ---
-title: 'Config'
-description: 'Configuration example is as follows.'
+title: "Config"
+description: "Configuration example is as follows."
 ---
 
 ```lua
 Config = {
-    Language = 'tr',
-    ControlVersions = true,
+    Language = 'tr',                           -- Language used by the script
+    ControlVersions = true,                    -- Enables version control checks
 
     Bridge = {
-        Framework   = '', -- [[ qb-core, qbx_core, es_extended ]] --
-        SQL         = '', -- [[ oxmysql, ghmattimysql ]] --
-        Inventory   = '', -- [[ qb-inventory, ps-inventory, ox_inventory, qs-inventory, mInventory ]] --
-        Zone        = '', -- [[ PolyZone, ox_lib ]] --
-        Target      = '', -- [[ qb-target, ox_target ]] --
-        Menu        = '', -- [[ qb-input, ox_lib ]] --
-        Input       = '', -- [[ qb-input, ox_lib ]] --
-        Notify      = '', -- [[ qb-core, ox_lib, es_extended ]] --
-        Drawtext    = '', -- [[ qb-core, ox_lib ]] --
-        Progressbar = '', -- [[ qb-core, ox_lib, es_extended ]] --
-        Fuel        = '', -- [[ LegacyFuel, cdn-fuel, ox_fuel ]] --
-        VehicleKey  = '', -- [[ qb-vehiclekeys, qs-vehiclekeys, qbx_vehiclekeys, cad-keys ]] --
+        Framework   = '', -- Server framework used (supports: qb-core, qbx_core, es_extended) -- Defines which core framework the script should integrate with
+        SQL         = '', -- SQL library (supports: oxmysql, ghmattimysql) -- Determines how the script communicates with the database
+        Inventory   = '', -- Inventory system (supports: qb-inventory, ps-inventory, ox_inventory) -- Sets which inventory system items and actions should use
+        Zone        = '', -- Zone detection library (supports: PolyZone, ox_lib) -- Controls how zones/areas are created and detected
+        Target      = '', -- Targeting system (supports: qb-target, ox_target) -- Used for interaction targeting (eye-target systems)
+        Menu        = '', -- Menu system (supports: qb-menu, ox_lib) -- Determines the UI method for menus
+        Input       = '', -- Input/dialog system (supports: qb-input, ox_lib) -- Handles user input prompts
+        Notify      = '', -- Notification system (supports: qb-core, ox_lib, es_extended) -- Controls how messages/alerts are shown
+        Drawtext    = '', -- DrawText system (supports: qb-core, ox_lib) -- Handles 3D text or on-screen text
+        Progressbar = '', -- Progress bar system (supports: qb-core, ox_lib, es_extended) -- Displays progress animations for actions
+        Fuel        = '', -- Fuel system (supports: LegacyFuel, cdn-fuel, ox_fuel) -- Defines the vehicle fuel management method
+        VehicleKey  = '', -- Vehicle key system (supports: qb-vehiclekeys, qs-vehiclekeys, qbx_vehiclekeys, cad-keys) -- Controls how players receive and use vehicle keys
     },
 
-    DrawtextPosition = 'left-center',
-    NotifyPosition = 'center-left', -- For ox_lib notification
+    DrawtextPosition = 'left-center',           -- Default DrawText position on screen
+    NotifyPosition = 'center-left',             -- Notification position (mainly for ox_lib)
+    UseEmbedBan = true,                         -- Enables embedded ban messages
+
+    PoliceJobs = {          -- Law enforcement job names
+        'police',
+        'sheriff',
+        'fbi',
+        'sasp',
+
+        'lspd',
+        'lssp',
+        'lssd',
+        'saspr',
+        'bcso',
+        'pbsd'
+    },
+
+    EMSJobs = {             -- EMS job names
+        'ambulance',
+        'ems',
+    },
+
+    MechanicJobs = {        -- Mechanic job names
+        'lscustom',
+        'bennys',
+        'lscustom2',
+        'hayesauto',
+        'tunershop',
+        '68autorepairs'
+    }
 }
 ```
