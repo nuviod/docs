@@ -2,7 +2,7 @@
 title: "Fixing Syntax Errors: Cause & Solution"
 ---
 
-**Issue:** Users may encounter the error `syntax error near '<\1>'` during file transfers. This typically occurs when transferring files that use the FXAP encryption method, such as `.rpd` files, which are prone to corruption if not transferred correctly.
+**Issue:** Users may encounter the **Error: syntax error near ’\<\\1\>’** during file transfers. This typically occurs when transferring files that use the FXAP encryption method, such as `.rpd` files, which are prone to corruption if not transferred correctly.
 
 **Cause:** The error is caused by improper handling of encrypted files during transfer. Default transfer modes like ASCII can alter file contents, resulting in syntax errors when the file is read.
 
