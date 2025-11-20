@@ -1,0 +1,18 @@
+---
+title: "Syntax Error"
+description: "Resolve the syntax error near '<\1>' caused by FXAP-encrypted files. Use binary transfer mode, compress files (.zip, .rar, .7z), and keep Artifacts updated to prevent corruption."
+---
+
+# **Error: syntax error near '\<\\1\>'**
+
+**Issue:** Users may encounter the error `syntax error near '<\1>'` during file transfers. This typically occurs when transferring files that use the FXAP encryption method, such as `.rpd` files, which are prone to corruption if not transferred correctly.
+
+**Cause:** The error is caused by improper handling of encrypted files during transfer. Default transfer modes like ASCII can alter file contents, resulting in syntax errors when the file is read.
+
+**Solution:**
+
+1. When using FileZilla or similar FTP clients, set the **Transfer Type** to **Binary** under the transfer settings. This ensures the file is transmitted byte-for-byte without alteration.
+2. For safer transfer, especially for FXAP-encrypted files, consider compressing files into `.zip`, `.rar`, or `.7z` archives before transfer. This reduces the risk of corruption and maintains integrity.
+3. Keep your **Artifacts version as up-to-date as possible**, since newer releases often include fixes for transfer and compatibility issues with encrypted file formats.
+
+Following these steps will minimize errors and ensure encrypted files are transferred without corruption.
