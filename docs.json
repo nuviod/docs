@@ -33,7 +33,6 @@
                 "pages": [
                   "resources/nv-core/showcase",
                   "resources/nv-core/config",
-                  "resources/nv-core/examples",
                   "resources/nv-core/changelog",
                   "resources/nv-core/errorcodes"
                 ]
