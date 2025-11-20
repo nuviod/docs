@@ -1,33 +1,37 @@
 ---
 title: "Dependencies"
-description: "Welcome to documentation. On this page you can find the necessary versions and information"
+description: "This section lists the core requirements needed for the script to run reliably. Each dependency plays a specific role in keeping the system stable, so make sure your server includes the versions noted here before continuing with the installation."
+mode: "center"
 ---
 
 ## Frameworks
 
-The framework versions mentioned on the page are recommended.
+Below you’ll find the recommended frameworks and versions tested for the best compatibility. These options offer the most consistent behavior with the script and help prevent issues that can appear on unsupported or outdated builds.
 
 <CardGroup cols={3}>
-  <Card title="QBCore" img="/images/qbcore.png">
-    Recommended version: 1.3.0
+  <Card title="QBCore" img="/images/qbcore.png" href="https://github.com/qbcore-framework/qb-core" >
+    Version: 1.3.0
   </Card>
-  <Card title="Qbox" img="/images/qbox.png">
-    Recommended version: 1.23.0
+  <Card title="Qbox" img="/images/qbox.png" href="https://github.com/Qbox-project/qbx_core">
+    Version: 1.23.0
   </Card>
-  <Card title="ESX" img="/images/esx.png">
-    Recommended version: 1.13.4
+  <Card title="ESX" img="/images/esx.png" href="https://github.com/esx-framework/esx_core">
+    Version: 1.13.4
   </Card>
 </CardGroup>
 
 ## Utils
 
-Recommended versions for database or other os scripts are specified
+This part covers the database libraries and additional utility resources such as ox_lib, sql that the script depends on or works best with. Versions listed here are the ones verified for smooth integration and stable performance across all supported features.
 
-<CardGroup cols={2}>
-  <Card title="oxmysql">
-    Recommended version: 2.12.0
+<CardGroup cols={3}>
+  <Card title="oxmysql" href="https://github.com/CommunityOx/oxmysql">
+    Version: 2.12.0
   </Card>
-  <Card title="ox_lib (optional)">
-    Recommended version: 3.30.5
+  <Card title="ox_lib" href="https://github.com/CommunityOx/ox_lib">
+    Version: 3.30.5
+  </Card>
+  <Card title="PolyZone" href="https://github.com/mkafrin/PolyZone">
+    Version: 2.6.2
   </Card>
 </CardGroup>
