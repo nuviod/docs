@@ -10,17 +10,19 @@ exports['nv-interactions']:AddInteraction(data, options, details)
 
 # Data
 
-<ResponseField name="name" type="string" required></ResponseField> -- Unique Identifier
-<ResponseField name="key" type="string" required></ResponseField> -- Interaction key
-<ResponseField name="type" type="string" required> coord, entity </ResponseField> -- Interaction Types
+<ResponseField name="name" type="string" required>Display name shown in the interaction menu.</ResponseField>
+<ResponseField name="key" type="string" required>Keyboard key used to trigger the interaction.</ResponseField>
+<ResponseField name="type" type="string" required> [coord, entity] Defines whether the interaction is bound to a world coordinate or an entity. </ResponseField> -- Interaction Types
 
 # Options
 
-<ParamField path="icon" type="string"></ParamField>
-<ParamField path="text" type="string" required></ParamField>
-<ParamField path="distance" type="integer" required></ParamField>
-<ParamField path="dotdistance" type="integer"></ParamField>
-<ParamField path="onselected" type="function"></ParamField>
-<ParamField path="event" type="string"></ParamField>
+<ParamField path="icon" type="string">Icon displayed next to the interaction option.</ParamField>
+<ParamField path="text" type="string" required>Text label shown in the interaction menu.</ParamField>
+<ParamField path="distance" type="integer" required>Maximum distance required to activate the interaction.</ParamField>
+<ParamField path="dotdistance" type="integer">Distance at which the interaction indicator dot becomes visible.</ParamField>
+<ParamField path="onselected" type="function">Function executed when the option is selected.</ParamField>
+<ParamField path="event" type="string">Event triggered when the option is selected.</ParamField>
 
 # Details
+
+<ParamField path="detail" type="array, vector or entity id">Target data used to define the interaction location or entity reference.</ParamField>
