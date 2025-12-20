@@ -8,20 +8,26 @@ mode: "wide"
 exports['nv-interactions']:AddInteraction(data, options, details)
 ```
 
-<ParamField path="data" type="Array">
-  <ParamField path="name" type="string"></ParamField> -- Unique Identifier
-  <ParamField path="key" type="string"></ParamField> -- Interaction key
-  <ParamField path="type" type="string"></ParamField> -- Interaction Types
-</ParamField>
+<Frame>
+  <ParamField path="data" type="Array">
+    <ParamField path="name" type="string"></ParamField> -- Unique Identifier
+    <ParamField path="key" type="string"></ParamField> -- Interaction key
+    <ParamField path="type" type="string"></ParamField> -- Interaction Types
+  </ParamField>
+</Frame>
 
-<ParamField path="options" type="Array">
-  <ParamField path="icon" type="string"></ParamField>
-  <ParamField path="text" type="string"></ParamField>
-  <ParamField path="distance" type="integer"></ParamField>
-  <ParamField path="dotdistance" type="integer"></ParamField>
-  <ParamField path="onselected" type="function"></ParamField>
-  <ParamField path="event" type="string"></ParamField>
-</ParamField>
+<Frame>
+  <ParamField path="options" type="Array">
+    <ParamField path="icon" type="string"></ParamField>
+    <ParamField path="text" type="string"></ParamField>
+    <ParamField path="distance" type="integer"></ParamField>
+    <ParamField path="dotdistance" type="integer"></ParamField>
+    <ParamField path="onselected" type="function"></ParamField>
+    <ParamField path="event" type="string"></ParamField>
+  </ParamField>
+</Frame>
 
-<ParamField path="details" type="Array, Entity Id or Vector">
-</ParamField>
+<Frame>
+  <ParamField path="details" type="Array, Entity Id or Vector">
+  </ParamField>
+</Frame>
