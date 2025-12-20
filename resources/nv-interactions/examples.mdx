@@ -1,4 +1,27 @@
 ---
 title: "Examples"
-description: "This page provides practical examples to demonstrate how the core is intended to be used in real scenarios. Each example focuses on a specific interaction type and shows how systems can register actions, define distances, and respond to player input without managing the underlying flow. The goal is to highlight common patterns and best practices, making it easier to understand how different resources can integrate with the core and work together in a consistent, predictable way."
+description: "This page showcases simple, real-world examples that demonstrate how interactions are registered and handled by the core. The focus is on practical usage, helping developers quickly understand common patterns and integrate the system without dealing with internal logic."
+mode: "wide"
 ---
+
+```
+exports['nv-interactions']:AddInteraction(data, options, details)
+```
+
+<ParamField path="data" type="Array">
+  <ParamField path="name" type="string"></ParamField> -- Unique Identifier
+  <ParamField path="key" type="string"></ParamField> -- Interaction key
+  <ParamField path="type" type="string"></ParamField> -- Interaction Types
+</ParamField>
+
+<ParamField path="options" type="Array">
+  <ParamField path="icon" type="string"></ParamField>
+  <ParamField path="text" type="string"></ParamField>
+  <ParamField path="distance" type="integer"></ParamField>
+  <ParamField path="dotdistance" type="integer"></ParamField>
+  <ParamField path="onselected" type="function"></ParamField>
+  <ParamField path="event" type="string"></ParamField>
+</ParamField>
+
+<ParamField path="details" type="Array, Entity Id or Vector">
+</ParamField>
