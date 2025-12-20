@@ -36,6 +36,13 @@
                   "resources/nv-core/changelog",
                   "resources/nv-core/errorcodes"
                 ]
+              },
+              {
+                "group": "nv-core",
+                "pages": [
+                  "resources/nv-core/showcase",
+                  "resources/nv-core/changelog"
+                ]
               }
             ]
           }
