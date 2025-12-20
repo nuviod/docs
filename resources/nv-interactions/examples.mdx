@@ -8,25 +8,19 @@ mode: "wide"
 exports['nv-interactions']:AddInteraction(data, options, details)
 ```
 
-<ResponseField name="data" type="Array" required>
-  A response field example
-  <ResponseField name="name" type="string" required></ResponseField> -- Unique Identifier
-  <ResponseField name="key" type="string" required></ResponseField> -- Interaction key
-  <ResponseField name="type" type="string" required></ResponseField> -- Interaction Types
-</ResponseField>
+# Data
 
-<Frame>
-  <ParamField path="options" type="Array">
-    <ParamField path="icon" type="string"></ParamField>
-    <ParamField path="text" type="string"></ParamField>
-    <ParamField path="distance" type="integer"></ParamField>
-    <ParamField path="dotdistance" type="integer"></ParamField>
-    <ParamField path="onselected" type="function"></ParamField>
-    <ParamField path="event" type="string"></ParamField>
-  </ParamField>
-</Frame>
+<ResponseField name="name" type="string" required></ResponseField> -- Unique Identifier
+<ResponseField name="key" type="string" required></ResponseField> -- Interaction key
+<ResponseField name="type" type="string" required> coord, entity </ResponseField> -- Interaction Types
 
-<Frame>
-  <ParamField path="details" type="Array, Entity Id or Vector">
-  </ParamField>
-</Frame>
+# Options
+
+<ParamField path="icon" type="string"></ParamField>
+<ParamField path="text" type="string" required></ParamField>
+<ParamField path="distance" type="integer" required></ParamField>
+<ParamField path="dotdistance" type="integer"></ParamField>
+<ParamField path="onselected" type="function"></ParamField>
+<ParamField path="event" type="string"></ParamField>
+
+# Details
