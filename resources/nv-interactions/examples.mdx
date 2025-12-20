@@ -9,11 +9,12 @@ exports['nv-interactions']:AddInteraction(data, options, details)
 ```
 
 <Frame>
-  <ParamField path="data" type="Array">
-    <ParamField path="name" type="string"></ParamField> -- Unique Identifier
-    <ParamField path="key" type="string"></ParamField> -- Interaction key
-    <ParamField path="type" type="string"></ParamField> -- Interaction Types
-  </ParamField>
+  <ResponseField name="data" type="Array" required>
+    A response field example
+    <ResponseField name="name" type="string" required></ResponseField> -- Unique Identifier
+    <ResponseField name="key" type="string" required></ResponseField> -- Interaction key
+    <ResponseField name="type" type="string" required></ResponseField> -- Interaction Types
+  </ResponseField>
 </Frame>
 
 <Frame>
