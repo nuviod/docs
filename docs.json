@@ -41,7 +41,8 @@
                 "group": "nv-interactions",
                 "pages": [
                   "resources/nv-interactions/showcase",
-                  "resources/nv-interactions/changelog"
+                  "resources/nv-interactions/changelog",
+                  "resources/nv-interactions/examples"
                 ]
               }
             ]
