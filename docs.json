@@ -38,10 +38,10 @@
                 ]
               },
               {
-                "group": "nv-core",
+                "group": "nv-interactions",
                 "pages": [
-                  "resources/nv-core/showcase",
-                  "resources/nv-core/changelog"
+                  "resources/nv-interactions/showcase",
+                  "resources/nv-interactions/changelog"
                 ]
               }
             ]
