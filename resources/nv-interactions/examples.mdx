@@ -1,17 +1,14 @@
 ---
-
 title: "Examples & API Reference"
 description: "Production-ready MDX documentation for nv-interactions. Covers API usage, parameters, return values, state management, and real-world examples."
 mode: "wide"
-----------
+---
 
 ## Overview
 
 `nv-interactions` provides a lightweight system for registering context-based interactions that players can trigger using a key press. Interactions can be attached to **world coordinates** or **entities** and can expose one or more selectable options.
 
 This documentation is fully **MDX-compatible** and intended for Mintlify.
-
----
 
 ## API
 
@@ -25,8 +22,6 @@ local groupKey = exports['nv-interactions']:AddInteraction(data, options, detail
 | ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `groupKey` | `string \| false` | Unique identifier for the interaction group. Used to enable or disable the interaction later. Returns `false` on failure. |
 
----
-
 ## Parameters
 
 ### `data`
@@ -39,7 +34,6 @@ Defines the base interaction configuration.
 | `key`  | `string` | Yes      | Keyboard key used to trigger the interaction.                  |
 | `type` | `string` | Yes      | Interaction binding type. Supported values: `coord`, `entity`. |
 
----
 
 ### `options`
 
@@ -56,7 +50,6 @@ Defines the selectable options shown to the player. Must be an array.
 
 > If both `onselected` and `event` are provided, `onselected` takes priority.
 
----
 
 ### `details`
 
@@ -68,7 +61,6 @@ Defines where or to what the interaction is attached.
 | `vector3[]` | Multiple world coordinates         |
 | `number`    | Entity ID (when `type = 'entity'`) |
 
----
 
 ## Interaction State Management
 
@@ -87,7 +79,6 @@ exports['nv-interactions']:DisableInteraction(interactionType, groupKey)
 
 Disabling an interaction removes it from the interaction scan while keeping it cached.
 
----
 
 ### Enable Interaction
 
@@ -97,7 +88,6 @@ exports['nv-interactions']:EnableInteraction(interactionType, groupKey)
 
 Re-enables a previously disabled interaction without re-registering it.
 
----
 
 ## Examples
 
@@ -121,8 +111,6 @@ local groupKey = exports['nv-interactions']:AddInteraction({
 }, vec(1.0, 1.0, 1.0))
 ```
 
----
-
 ### Multiple Coordinate Interaction
 
 ```lua
@@ -145,7 +133,6 @@ exports['nv-interactions']:AddInteraction({
 })
 ```
 
----
 
 ### Entity Interaction
 
@@ -166,7 +153,6 @@ exports['nv-interactions']:AddInteraction({
 }, 123456)
 ```
 
----
 
 ### Toggle Interaction State
 
@@ -175,7 +161,6 @@ exports['nv-interactions']:DisableInteraction('coord', groupKey)
 exports['nv-interactions']:EnableInteraction('coord', groupKey)
 ```
 
----
 
 ## Best Practices
 
@@ -183,8 +168,6 @@ exports['nv-interactions']:EnableInteraction('coord', groupKey)
 * Prefer disabling interactions over removing and re-adding them
 * Use state toggling for jobs, interiors, phases, or conditional gameplay logic
 * Keep interaction logic lightweight and event-driven
-
----
 
 ## Notes
 
