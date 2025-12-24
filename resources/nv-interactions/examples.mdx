@@ -1,23 +1,19 @@
 ---
 
-title: "Examples & API Reference"
-description: "This page provides a clear, production-ready overview of how to register and manage interactions using the nv-interactions core. It explains the API structure, all parameters, and common usage patterns with practical examples."
-mode: "wide"
-------------
+title: Examples & API Reference
+description: Production-ready MDX documentation for nv-interactions. Covers API usage, parameters, return values, state management, and real-world examples.
+mode: wide
+----------
 
 ## Overview
 
-`nv-interactions` allows you to register context-based interactions that players can trigger using a key press. Interactions can be bound to **world coordinates** or **entities**, and can expose one or more selectable options.
+`nv-interactions` provides a lightweight system for registering context-based interactions that players can trigger using a key press. Interactions can be attached to **world coordinates** or **entities** and can expose one or more selectable options.
 
-The system is designed to be:
-
-* Lightweight and performant
-* Easy to integrate
-* Flexible for both simple and advanced use cases
+This documentation is fully **MDX-compatible** and intended for Mintlify.
 
 ---
 
-## API Signature
+## API
 
 ```lua
 local groupKey = exports['nv-interactions']:AddInteraction(data, options, details)
@@ -25,90 +21,101 @@ local groupKey = exports['nv-interactions']:AddInteraction(data, options, detail
 
 ### Return Value
 
-| Value      | Type           | Description                                                                                                                             |
-| ---------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `groupKey` | string | false | Unique identifier generated for the interaction group. Used for enabling/disabling interactions. Returns `false` if registration fails. |
-
-### Parameters
-
-| Parameter | Type  | Required | Description                                     |
-| --------- | ----- | -------- | ----------------------------------------------- |
-| `data`    | table | Yes      | Core interaction definition (name, key, type).  |
-| `options` | table | Yes      | List of selectable interaction options.         |
-| `details` | mixed | Yes      | Target definition (coordinate(s) or entity id). |
-
----------|------|----------|-------------|
-| `data` | table | Yes | Core interaction definition (name, key, type). |
-| `options` | table | Yes | List of selectable interaction options. |
-| `details` | mixed | Yes | Target definition (coordinate(s) or entity id). |
+| Name       | Type              | Description                                                                                                               |
+| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `groupKey` | `string \| false` | Unique identifier for the interaction group. Used to enable or disable the interaction later. Returns `false` on failure. |
 
 ---
 
-## Data
+## Parameters
+
+### `data`
 
 Defines the base interaction configuration.
 
-| Field  | Type   | Required | Description                                                               |
-| ------ | ------ | -------- | ------------------------------------------------------------------------- |
-| `name` | string | Yes      | Display name shown in the interaction menu.                               |
-| `key`  | string | Yes      | Keyboard key used to trigger the interaction.                             |
-| `type` | string | Yes      | Defines how the interaction is bound. Possible values: `coord`, `entity`. |
-
-### Interaction Types
-
-* `coord` → Interaction is bound to one or more world coordinates
-* `entity` → Interaction is bound to a specific entity id
+| Field  | Type     | Required | Description                                                    |
+| ------ | -------- | -------- | -------------------------------------------------------------- |
+| `name` | `string` | Yes      | Display name shown in the interaction menu.                    |
+| `key`  | `string` | Yes      | Keyboard key used to trigger the interaction.                  |
+| `type` | `string` | Yes      | Interaction binding type. Supported values: `coord`, `entity`. |
 
 ---
 
-## Options
+### `options`
 
-Defines what the player can select once the interaction is triggered.
+Defines the selectable options shown to the player. Must be an array.
 
-Each option is defined as a table inside the `options` array.
+| Field         | Type       | Required | Description                                          |
+| ------------- | ---------- | -------- | ---------------------------------------------------- |
+| `icon`        | `string`   | No       | FontAwesome icon shown next to the option.           |
+| `text`        | `string`   | Yes      | Label shown in the interaction menu.                 |
+| `distance`    | `number`   | Yes      | Maximum distance required to activate the option.    |
+| `dotdistance` | `number`   | No       | Distance at which the indicator dot becomes visible. |
+| `onselected`  | `function` | No       | Function executed when the option is selected.       |
+| `event`       | `string`   | No       | Event triggered when the option is selected.         |
 
-| Field         | Type     | Required | Description                                                |
-| ------------- | -------- | -------- | ---------------------------------------------------------- |
-| `icon`        | string   | No       | Icon displayed next to the option (FontAwesome supported). |
-| `text`        | string   | Yes      | Text label shown in the interaction menu.                  |
-| `distance`    | number   | Yes      | Maximum distance required to activate the option.          |
-| `dotdistance` | number   | No       | Distance at which the indicator dot becomes visible.       |
-| `onselected`  | function | No       | Function executed when the option is selected.             |
-| `event`       | string   | No       | Event triggered when the option is selected.               |
-
-> Either `onselected` **or** `event` can be used. If both are provided, `onselected` takes priority.
+> If both `onselected` and `event` are provided, `onselected` takes priority.
 
 ---
 
-## Details
+### `details`
 
 Defines where or to what the interaction is attached.
 
-| Type             | Description                             |
-| ---------------- | --------------------------------------- |
-| `vector3`        | Single world coordinate                 |
-| `table<vector3>` | Multiple world coordinates              |
-| `number`         | Entity ID (used when `type = 'entity'`) |
+| Value Type  | Description                        |
+| ----------- | ---------------------------------- |
+| `vector3`   | Single world coordinate            |
+| `vector3[]` | Multiple world coordinates         |
+| `number`    | Entity ID (when `type = 'entity'`) |
+
+---
+
+## Interaction State Management
+
+Interactions can be dynamically disabled or re-enabled using the returned `groupKey`.
+
+### Disable Interaction
+
+```lua
+exports['nv-interactions']:DisableInteraction(interactionType, groupKey)
+```
+
+| Parameter         | Type     | Description                            |
+| ----------------- | -------- | -------------------------------------- |
+| `interactionType` | `string` | `coord` or `entity`                    |
+| `groupKey`        | `string` | Group key returned by `AddInteraction` |
+
+Disabling an interaction removes it from the interaction scan while keeping it cached.
+
+---
+
+### Enable Interaction
+
+```lua
+exports['nv-interactions']:EnableInteraction(interactionType, groupKey)
+```
+
+Re-enables a previously disabled interaction without re-registering it.
 
 ---
 
 ## Examples
 
-### 1. Single Coordinate Interaction
+### Single Coordinate Interaction
 
 ```lua
-exports['nv-interactions']:AddInteraction({
+local groupKey = exports['nv-interactions']:AddInteraction({
   name = 'Test Interaction',
   key = 'E',
   type = 'coord',
 }, {
   {
     icon = 'fas fa-flask',
-    text = 'Test Option 1',
+    text = 'Test Option',
     distance = 2.0,
     dotdistance = 5.0,
     onselected = function()
-      print('Test Option 1 selected!')
+      print('Option selected')
     end
   }
 }, vec(1.0, 1.0, 1.0))
@@ -116,7 +123,7 @@ exports['nv-interactions']:AddInteraction({
 
 ---
 
-### 2. Multiple Coordinate Interaction
+### Multiple Coordinate Interaction
 
 ```lua
 exports['nv-interactions']:AddInteraction({
@@ -128,9 +135,8 @@ exports['nv-interactions']:AddInteraction({
     icon = 'fas fa-map-marker-alt',
     text = 'Interact',
     distance = 2.0,
-    dotdistance = 5.0,
     onselected = function()
-      print('Interaction triggered at one of the locations')
+      print('Triggered from one of multiple coords')
     end
   }
 }, {
@@ -141,7 +147,7 @@ exports['nv-interactions']:AddInteraction({
 
 ---
 
-### 3. Entity-Based Interaction
+### Entity Interaction
 
 ```lua
 exports['nv-interactions']:AddInteraction({
@@ -162,62 +168,10 @@ exports['nv-interactions']:AddInteraction({
 
 ---
 
-## Interaction State Control
-
-Interactions can be dynamically disabled or re-enabled at runtime using the exported helpers below. These functions operate on the **groupKey** returned by `AddInteraction`.
-
-### Disable Interaction
+### Toggle Interaction State
 
 ```lua
-exports['nv-interactions']:DisableInteraction(interactionType, groupKey)
-```
-
-| Parameter         | Type   | Required | Description                               |
-| ----------------- | ------ | -------- | ----------------------------------------- |
-| `interactionType` | string | Yes      | Interaction type (`coord` or `entity`).   |
-| `groupKey`        | string | Yes      | Group key returned from `AddInteraction`. |
-
-Disabling an interaction prevents it from being included in the interaction scan list while keeping its data cached.
-
----
-
-### Enable Interaction
-
-```lua
-exports['nv-interactions']:EnableInteraction(interactionType, groupKey)
-```
-
-| Parameter         | Type   | Required | Description                               |
-| ----------------- | ------ | -------- | ----------------------------------------- |
-| `interactionType` | string | Yes      | Interaction type (`coord` or `entity`).   |
-| `groupKey`        | string | Yes      | Group key returned from `AddInteraction`. |
-
-Re-enabling restores the interaction without requiring re-registration.
-
----
-
-## Example: Toggle Interaction State
-
-```lua
-local groupKey = exports['nv-interactions']:AddInteraction({
-  name = 'Door Control',
-  key = 'E',
-  type = 'coord',
-}, {
-  {
-    icon = 'fas fa-door-open',
-    text = 'Open Door',
-    distance = 2.0,
-    onselected = function()
-      print('Door opened')
-    end
-  }
-}, vec(10.0, 10.0, 10.0))
-
--- Temporarily disable
 exports['nv-interactions']:DisableInteraction('coord', groupKey)
-
--- Re-enable later
 exports['nv-interactions']:EnableInteraction('coord', groupKey)
 ```
 
@@ -225,18 +179,15 @@ exports['nv-interactions']:EnableInteraction('coord', groupKey)
 
 ## Best Practices
 
-* Always store the returned `groupKey` if the interaction state needs to be controlled later
+* Always store the returned `groupKey` if the interaction needs to be controlled later
 * Prefer disabling interactions over removing and re-adding them
 * Use state toggling for jobs, interiors, phases, or conditional gameplay logic
+* Keep interaction logic lightweight and event-driven
 
 ---
 
 ## Notes
 
-* Interactions are automatically cleaned up when the resource stops
-* Invalid coordinates or entity ids will silently fail
-* Performance scales linearly with active interactions
-
----
-
-This documentation focuses on **clarity**, **consistency**, and **real-world usage**, ensuring fast onboarding for developers while remaining flexible for advanced systems.
+* Interactions are cached and reused for performance
+* Invalid entity IDs or coordinates will silently fail
+* Performance scales linearly with active interaction groups
