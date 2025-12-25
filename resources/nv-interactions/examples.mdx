@@ -154,17 +154,3 @@ exports['nv-interactions']:AddInteraction({
 exports['nv-interactions']:DisableInteraction('coord', groupKey)
 exports['nv-interactions']:EnableInteraction('coord', groupKey)
 ```
-
-
-## Best Practices
-
-* Always store the returned `groupKey` if the interaction needs to be controlled later
-* Prefer disabling interactions over removing and re-adding them
-* Use state toggling for jobs, interiors, phases, or conditional gameplay logic
-* Keep interaction logic lightweight and event-driven
-
-## Notes
-
-* Interactions are cached and reused for performance
-* Invalid entity IDs or coordinates will silently fail
-* Performance scales linearly with active interaction groups
