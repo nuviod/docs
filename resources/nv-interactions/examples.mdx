@@ -1,8 +1,9 @@
 ---
+
 title: "Examples & API Reference"
-description: "nv-interactions provides a lightweight system for registering context-based interactions that players can trigger using a key press. Interactions can be attached to **world coordinates** or **entities** and can expose one or more selectable options."
+description: "nv-interactions provides a lightweight system for registering context-based interactions."
 mode: "wide"
----
+------------
 
 ## Overview
 
@@ -10,102 +11,86 @@ mode: "wide"
 local groupKey = exports['nv-interactions']:AddInteraction(data, options, details)
 ```
 
-### Return Value
+## Return Value
 
-| Name       | Type              | Description                                                                                                               |
-| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `groupKey` | `string \| false` | Unique identifier for the interaction group. Used to enable or disable the interaction later. Returns `false` on failure. |
+| Name     | Type           | Description                                                            |
+| -------- | -------------- | ---------------------------------------------------------------------- |
+| groupKey | string | false | Unique identifier for the interaction group. Returns false on failure. |
 
 ## Parameters
 
-### `data`
+### data
 
-Defines the base interaction configuration.
+| Field | Type   | Required | Description           |
+| ----- | ------ | -------- | --------------------- |
+| name  | string | Yes      | Display name in menu  |
+| key   | string | Yes      | Keyboard key          |
+| type  | string | Yes      | coord, entity, 3dtext |
 
-| Field  | Type     | Required | Description                                                    |
-| ------ | -------- | -------- | -------------------------------------------------------------- |
-| `name` | `string` | Yes      | Display name shown in the interaction menu.                    |
-| `key`  | `string` | Yes      | Keyboard key used to trigger the interaction.                  |
-| `type` | `string` | Yes      | Interaction binding type. Supported values: `coord`, `entity`. |
+### options
 
+| Field       | Type     | Required | Description             |
+| ----------- | -------- | -------- | ----------------------- |
+| text        | string   | Yes      | Option label            |
+| icon        | string   | No       | FontAwesome icon        |
+| distance    | number   | Yes      | Interaction distance    |
+| dotdistance | number   | No       | Dot visibility distance |
+| disabled    | boolean  | No       | Disable option          |
+| onselected  | function | No       | Callback                |
+| event       | string   | No       | Client event            |
 
-### `options`
+### details
 
-Defines the selectable options shown to the player. Must be an array.
-
-| Field         | Type       | Required | Description                                          |
-| ------------- | ---------- | -------- | ---------------------------------------------------- |
-| `icon`        | `string`   | No       | FontAwesome icon shown next to the option.           |
-| `text`        | `string`   | Yes      | Label shown in the interaction menu.                 |
-| `distance`    | `number`   | Yes      | Maximum distance required to activate the option.    |
-| `dotdistance` | `number`   | No       | Distance at which the indicator dot becomes visible. |
-| `onselected`  | `function` | No       | Function executed when the option is selected.       |
-| `event`       | `string`   | No       | Event triggered when the option is selected.         |
-
-> If both `onselected` and `event` are provided, `onselected` takes priority.
-
-
-### `details`
-
-Defines where or to what the interaction is attached.
-
-| Value Type  | Description                        |
-| ----------- | ---------------------------------- |
-| `vector3`   | Single world coordinate            |
-| `vector3[]` | Multiple world coordinates         |
-| `number`    | Entity ID (when `type = 'entity'`) |
-
+| Type      | Description          |
+| --------- | -------------------- |
+| vector3   | Single coordinate    |
+| vector3[] | Multiple coordinates |
+| number    | Entity id            |
 
 ## Interaction State Management
-
-Interactions can be dynamically disabled or re-enabled using the returned `groupKey`.
 
 ### Disable Interaction
 
 ```lua
-exports['nv-interactions']:DisableInteraction(interactionType, groupKey)
+exports['nv-interactions']:DisableInteraction('coord', groupKey)
 ```
-
-| Parameter         | Type     | Description                            |
-| ----------------- | -------- | -------------------------------------- |
-| `interactionType` | `string` | `coord` or `entity`                    |
-| `groupKey`        | `string` | Group key returned by `AddInteraction` |
-
-Disabling an interaction removes it from the interaction scan while keeping it cached.
-
 
 ### Enable Interaction
 
 ```lua
-exports['nv-interactions']:EnableInteraction(interactionType, groupKey)
+exports['nv-interactions']:EnableInteraction('coord', groupKey)
 ```
 
-Re-enables a previously disabled interaction without re-registering it.
+## Edit Interaction
 
+```lua
+exports['nv-interactions']:EditInteraction('coord', groupKey, {
+  name = 'Updated Interaction',
+  key = 'F',
+})
+```
 
 ## Examples
 
-### Single Coordinate Interaction
+### Single Coordinate
 
 ```lua
-local groupKey = exports['nv-interactions']:AddInteraction({
+exports['nv-interactions']:AddInteraction({
   name = 'Test Interaction',
   key = 'E',
   type = 'coord',
 }, {
   {
-    icon = 'fas fa-flask',
     text = 'Test Option',
     distance = 2.0,
-    dotdistance = 5.0,
     onselected = function()
-      print('Option selected')
+      print('Selected')
     end
   }
 }, vec(1.0, 1.0, 1.0))
 ```
 
-### Multiple Coordinate Interaction
+### Multiple Coordinates
 
 ```lua
 exports['nv-interactions']:AddInteraction({
@@ -114,19 +99,14 @@ exports['nv-interactions']:AddInteraction({
   type = 'coord',
 }, {
   {
-    icon = 'fas fa-map-marker-alt',
     text = 'Interact',
     distance = 2.0,
-    onselected = function()
-      print('Triggered from one of multiple coords')
-    end
   }
 }, {
-  vec(1.0, 1.0, 1.0),
-  vec(2.0, 2.0, 2.0)
+  vec(1.0,1.0,1.0),
+  vec(2.0,2.0,2.0)
 })
 ```
-
 
 ### Entity Interaction
 
@@ -137,20 +117,29 @@ exports['nv-interactions']:AddInteraction({
   type = 'entity',
 }, {
   {
-    icon = 'fas fa-user',
     text = 'Talk',
     distance = 2.0,
-    onselected = function()
-      print('Entity interaction triggered')
-    end
   }
-}, 123456)
+}, entityId)
 ```
 
-
-### Toggle Interaction State
+### 3D Text Interaction
 
 ```lua
-exports['nv-interactions']:DisableInteraction('coord', groupKey)
-exports['nv-interactions']:EnableInteraction('coord', groupKey)
+exports['nv-interactions']:AddInteraction({
+  name = '3D Text',
+  key = 'E',
+  type = '3dtext',
+}, {
+  {
+    text = 'Read',
+    distance = 2.0,
+  }
+}, vec(10.0,10.0,10.0))
 ```
+
+## Notes
+
+* Interactions are cached internally
+* Disabled interactions are skipped during scan
+* Entity interactions auto-clean when entity no longer exists
