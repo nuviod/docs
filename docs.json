@@ -78,5 +78,12 @@
       "github": "https://github.com/nuviod",
       "youtube": "https://youtube.com/@vuviod"
     }
+  },
+  "styling": {
+    "codeblocks": "dark",
+    "latex": false
+  },
+  "icons": {
+    "library": "fontawesome"
   }
 }
