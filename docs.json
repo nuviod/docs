@@ -85,5 +85,8 @@
   },
   "icons": {
     "library": "fontawesome"
+  },
+  "thumbnails": {
+    "appearance": "dark"
   }
 }
